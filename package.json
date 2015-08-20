@@ -1,0 +1,26 @@
+{
+  "name": "porcomprar",
+  "version": "1.0.0",
+  "description": "Website to support a shopping list application.",
+  "main": "app.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlybrand/porcomprar.git"
+  },
+  "keywords": [
+    "shopping",
+    "list",
+    "groceries",
+    "wish",
+    "list"
+  ],
+  "author": "Mark Lybrand [ mlybrand@gmail.com ]",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mlybrand/porcomprar/issues"
+  },
+  "homepage": "https://github.com/mlybrand/porcomprar#readme"
+}
