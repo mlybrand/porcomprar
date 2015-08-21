@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 src: ['test/**/*.js']
             }
         }
-    })
+    });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
