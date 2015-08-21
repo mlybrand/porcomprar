@@ -2,7 +2,10 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         jshint: {
-            all: ['*.js']
+            options: {
+               expr: true
+            },
+            all: ['*.js', 'test/**/*.js']
         },
         mochaTest: {
             test: {
