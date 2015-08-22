@@ -15,6 +15,8 @@ describe('Shopping List Site', function() {
             server = app.listen(port, function() {
                 done();
             });
+        } else {
+            done();
         }
     });
 
