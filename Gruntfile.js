@@ -26,10 +26,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
 
-    grunt.registerTask('test', ['jshint', 'mochaTest']);
-    grunt.registerTask('foo', function() {
-        console.log(process.env.NODE_ENV);
-    });
-    grunt.registerTask('bar', ['env:dev', 'foo']);
-    grunt.registerTask('baz', ['env:prod', 'foo']);
+    grunt.registerTask('test', ['env:dev', 'jshint', 'mochaTest']);
+    grunt.registerTask('smoketest', ['env:prod', 'mochaTest']);
+
 };
