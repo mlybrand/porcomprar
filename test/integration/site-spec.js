@@ -7,6 +7,7 @@ var expect = require('chai').expect,
 
 describe('Shopping List Site', function() {
     var app, server;
+
     before(function(done) {
         if (env === 'development') {
             app = require('../../lib/app');
