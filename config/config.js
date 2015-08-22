@@ -3,6 +3,6 @@ module.exports = {
         baseUrl: 'http://localhost'
     },
     production: {
-        baseUrl: 'http://porcomprar.herokuapp.com'
+        baseUrl: 'https://porcomprar.herokuapp.com'
     }
 }
