@@ -5,4 +5,4 @@ module.exports = {
     production: {
         baseUrl: 'https://porcomprar.herokuapp.com'
     }
-}
+};
