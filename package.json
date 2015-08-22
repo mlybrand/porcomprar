@@ -31,5 +31,9 @@
     "grunt-mocha-test": "^0.12.7",
     "mocha": "^2.2.5",
     "selenium-webdriver": "^2.46.1"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
   }
 }
