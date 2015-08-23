@@ -9,7 +9,7 @@ describe('Shopping List Site', function() {
     var app, server;
 
     before(function(done) {
-        if (env === 'development') {
+        if (env === 'development' || env === 'test') {
             app = require('../../lib/app');
             baseUrl = baseUrl + ':' + port;
             server = app.listen(port, function() {
@@ -31,7 +31,7 @@ describe('Shopping List Site', function() {
     });
 
     after(function() {
-        if (env === 'development') {
+        if (env === 'development' || env === 'test') {
            server.close();
         }
     });
