@@ -20,6 +20,12 @@ describe('Shopping List Site', function() {
         }
     });
 
+    after(function() {
+        if (env === 'development' || env === 'test') {
+            server.close();
+        }
+    });
+
     it('should exist', function(done) {
         var driver = new sw.Builder().withCapabilities(sw.Capabilities.phantomjs()).build();
         driver.get(baseUrl).then(function() {
@@ -30,9 +36,4 @@ describe('Shopping List Site', function() {
         });
     });
 
-    after(function() {
-        if (env === 'development' || env === 'test') {
-           server.close();
-        }
-    });
 });
