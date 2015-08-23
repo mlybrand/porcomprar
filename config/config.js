@@ -5,7 +5,7 @@ module.exports = {
     test: {
         baseUrl: 'http://localhost'
     },
-    production: {
+    smoke: {
         baseUrl: 'https://porcomprar.herokuapp.com'
     }
 };

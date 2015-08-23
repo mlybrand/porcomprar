@@ -8,6 +8,9 @@ module.exports = function(grunt) {
             test: {
                 NODE_ENV: 'test'
             },
+            smoke: {
+                NODE_ENV: 'smoke'
+            },
             prod: {
                 NODE_ENV: 'production'
             }
@@ -30,6 +33,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
 
     grunt.registerTask('test', ['env:test', 'jshint', 'mochaTest']);
-    grunt.registerTask('smoketest', ['env:prod', 'mochaTest']);
+    grunt.registerTask('smoketest', ['env:smoke', 'mochaTest']);
 
 };
