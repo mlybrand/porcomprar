@@ -39,7 +39,8 @@ describe('API', function() {
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .expect(function(res) {
-                    if (res.body.length !== 3) {
+                    var items = res.body;
+                    if (items.length !== 3) {
                         throw new Error('There are not the 3 expected items');
                     }
                 })
