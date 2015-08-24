@@ -38,6 +38,11 @@ describe('API', function() {
             api.get('/list')
                 .expect(200)
                 .expect('Content-Type', /json/)
+                .expect(function(res) {
+                    if (res.body.length !== 3) {
+                        throw new Error('There are not the 3 expected items');
+                    }
+                })
                 .end(done);
         });
         it('should return one item when called with an id');
