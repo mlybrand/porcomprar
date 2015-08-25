@@ -39,14 +39,17 @@ describe('API', function() {
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .expect(function(res) {
-                    var items = res.body;
+                    var items = res.body,
+                        ids = '';
                     if (items.length !== 3) {
                         throw new Error('There are not the 3 expected items');
                     }
                     items.forEach(function(item, i) {
                         if (!item) { throw new Error('item[' + i + '] was not a valid object'); }
                         if (!item.id || !/^\d+$/.test(item.id)) { throw new Error('item[' + i + '] did not have a valid id'); }
+                        ids += '' + item.id;
                     });
+                    if (ids !== '123') { throw new Error('The item ids discovered were not the expected ones.'); }
                 })
                 .end(done);
         });
