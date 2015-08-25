@@ -43,6 +43,9 @@ describe('API', function() {
                     if (items.length !== 3) {
                         throw new Error('There are not the 3 expected items');
                     }
+                    items.forEach(function(item, i) {
+                        if (!item) { throw new Error('item[' + i + '] was not a valid object'); }
+                    });
                 })
                 .end(done);
         });
