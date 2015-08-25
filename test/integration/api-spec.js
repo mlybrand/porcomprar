@@ -45,6 +45,7 @@ describe('API', function() {
                     }
                     items.forEach(function(item, i) {
                         if (!item) { throw new Error('item[' + i + '] was not a valid object'); }
+                        if (!item.id || !/^\d+$/.test(item.id)) { throw new Error('item[' + i + '] did not have a valid id'); }
                     });
                 })
                 .end(done);
