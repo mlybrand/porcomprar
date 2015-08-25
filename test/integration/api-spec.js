@@ -41,7 +41,8 @@ describe('API', function() {
                 .expect(function(res) {
                     var items = res.body,
                         ids = '',
-                        names = '';
+                        names = '',
+                        completeds = '';
                     if (items.length !== 3) {
                         throw new Error('There are not the 3 expected items');
                     }
@@ -55,12 +56,19 @@ describe('API', function() {
                             throw new Error('item[' + i + '] did not have a valid name');
                         }
                         names += '' + item.name;
+                        if (typeof item.completed !== 'boolean') {
+                            throw new Error('item[' + i + '] did not have a valid completed');
+                        }
+                        completeds += '' + item.completed;
                     });
                     if (ids !== '123') {
                         throw new Error('The item ids discovered were not the expected ones.');
                     }
                     if (names !== 'foobarbaz') {
                         throw new Error('The item names discovered were not the expected ones.');
+                    }
+                    if (completeds !== 'truefalsetrue') {
+                        throw new Error('The item completed attributes were not the expected ones.');
                     }
                 })
                 .end(done);
