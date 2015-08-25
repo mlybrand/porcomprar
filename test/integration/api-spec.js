@@ -40,16 +40,28 @@ describe('API', function() {
                 .expect('Content-Type', /json/)
                 .expect(function(res) {
                     var items = res.body,
-                        ids = '';
+                        ids = '',
+                        names = '';
                     if (items.length !== 3) {
                         throw new Error('There are not the 3 expected items');
                     }
                     items.forEach(function(item, i) {
                         if (!item) { throw new Error('item[' + i + '] was not a valid object'); }
-                        if (!item.id || !/^\d+$/.test(item.id)) { throw new Error('item[' + i + '] did not have a valid id'); }
+                        if (!item.id || !/^\d+$/.test(item.id)) {
+                            throw new Error('item[' + i + '] did not have a valid id');
+                        }
                         ids += '' + item.id;
+                        if (!item.name || item.name.length <= 0) {
+                            throw new Error('item[' + i + '] did not have a valid name');
+                        }
+                        names += '' + item.name;
                     });
-                    if (ids !== '123') { throw new Error('The item ids discovered were not the expected ones.'); }
+                    if (ids !== '123') {
+                        throw new Error('The item ids discovered were not the expected ones.');
+                    }
+                    if (names !== 'foobarbaz') {
+                        throw new Error('The item names discovered were not the expected ones.');
+                    }
                 })
                 .end(done);
         });
