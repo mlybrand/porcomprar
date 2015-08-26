@@ -34,7 +34,12 @@ describe('API', function() {
     });
 
     describe('Create', function() {
-
+        it('should take an object, add it, and return a response with the new object and its location', function(done) {
+            api.post('/items')
+                .send({ name: 'fizz', complated: false})
+                .expect(201)
+                .end(done);
+        });
     });
 
     describe('Read', function() {
@@ -42,7 +47,7 @@ describe('API', function() {
             // first need to update the database with the list of three items as set up
             // then make the api call
             // then check the result
-            api.get('/list')
+            api.get('/items')
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .expect(function(res) {
@@ -82,7 +87,7 @@ describe('API', function() {
                 .end(done);
         });
         it('should return one item when called with an id', function(done) {
-            api.get('/list/1')
+            api.get('/items/1')
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .expect(function(res) {
