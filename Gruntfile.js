@@ -19,7 +19,7 @@ module.exports = function(grunt) {
             options: {
                expr: true
             },
-            all: ['*.js', 'test/**/*.js', 'config/**/*.js']
+            all: ['*.js', 'lib/**/*.js', 'test/**/*.js', 'config/**/*.js']
         },
         mochaTest: {
             test: {
