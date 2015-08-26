@@ -81,7 +81,11 @@ describe('API', function() {
                 })
                 .end(done);
         });
-        it('should return one item when called with an id');
+        it('should return one item when called with an id', function(done) {
+            api.get('/list/1')
+                .expect(200)
+                .end(done);
+        });
     });
 
     describe('Update', function() {
