@@ -2,6 +2,8 @@ var supertest = require('supertest'),
     config = require('../../config/config'),
     env = process.env.NODE_ENV,
     port = 3000,
+    db = require('../../lib/db'),
+    Item = require('mongoose').model('Item');
     baseUrl = config[env].baseUrl,
     api = supertest(baseUrl + ( env === 'development' || env === 'test' ? ':' + port : '') + '/api');
 
@@ -9,27 +11,33 @@ describe('API', function() {
     var app, server;
 
     before(function(done) {
-        if (env === 'development' || env === 'test') {
-            app = require('../../lib/app');
-            baseUrl = baseUrl + ':' + port;
-            server = app.listen(port, function() {
-                console.log('server started');
-                done();
+        removeRecords(function() {
+            addRecords(function() {
+                console.log('yeah baby');
+                if (env === 'development' || env === 'test') {
+                    app = require('../../lib/app');
+                    baseUrl = baseUrl + ':' + port;
+                    server = app.listen(port, function() {
+                        done();
+                    });
+                } else {
+                    done();
+                }
             });
-        } else {
-            done();
-        }
+        });
     });
 
-    after(function() {
+    after(function(done) {
         if (env === 'development' || env === 'test') {
             server.close();
         }
+        removeRecords(done);
     });
 
     describe('Create', function() {
 
     });
+
     describe('Read', function() {
         it('should return a list of three items when called without an id', function(done) {
             // first need to update the database with the list of three items as set up
@@ -62,6 +70,7 @@ describe('API', function() {
                         completeds += '' + item.completed;
                     });
                     if (ids !== '123') {
+                        console.log(ids);
                         throw new Error('The item ids discovered were not the expected ones.');
                     }
                     if (names !== 'foobarbaz') {
@@ -75,10 +84,57 @@ describe('API', function() {
         });
         it('should return one item when called with an id');
     });
+
     describe('Update', function() {
 
     });
+
     describe('Delete', function() {
 
     });
 });
+
+function addRecords(callback) {
+    var newItems = [
+        {
+            name: 'foo',
+            completed: true
+        },
+        {
+            name: 'bar',
+            completed: false
+        },
+        {
+            name: 'baz',
+            completed: true
+        }
+    ];
+
+    var nextId = 0;
+    Item.find({}, 'id', { sort: { id: -1 }}, function(err, items) {
+        if (err) {
+            throw err;
+        }
+        if(items.length > 0) {
+            nextId = parseInt(items[0].id, 10);
+        }
+
+        newItems.forEach(function(item) {
+            nextId++;
+            item.id = nextId;
+        });
+        Item.create(newItems, function(err) {
+            if (err) {
+                throw err;
+            }
+            callback();
+        });
+    });
+}
+
+function removeRecords(callback) {
+    Item.remove({}, function(err) {
+        if (err) { throw err; }
+        callback();
+    });
+}
