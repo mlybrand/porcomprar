@@ -84,6 +84,7 @@ describe('API', function() {
         it('should return one item when called with an id', function(done) {
             api.get('/list/1')
                 .expect(200)
+                .expect('Content-Type', /json/)
                 .end(done);
         });
     });
