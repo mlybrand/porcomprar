@@ -85,6 +85,12 @@ describe('API', function() {
             api.get('/list/1')
                 .expect(200)
                 .expect('Content-Type', /json/)
+                .expect(function(res) {
+                    var item = res.body;
+                    if (item.id !== 1) { throw new Error('The id number is not 1'); }
+                    if (item.name !== 'foo') { throw new Error('The name is not foo'); }
+                    if (!item.completed) { throw new Error('The completed attribute is not true'); }
+                })
                 .end(done);
         });
     });
