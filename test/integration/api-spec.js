@@ -13,7 +13,6 @@ describe('API', function() {
     before(function(done) {
         removeRecords(function() {
             addRecords(function() {
-                console.log('yeah baby');
                 if (env === 'development' || env === 'test') {
                     app = require('../../lib/app');
                     baseUrl = baseUrl + ':' + port;

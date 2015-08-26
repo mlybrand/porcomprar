@@ -14,7 +14,7 @@ module.exports = {
     },
     smoke: {
         baseUrl: 'https://porcomprar.herokuapp.com',
-        dbUri: 'mongodb://' + dbTestUser + ':' + dbTestPassword + '@ds033133.mongolab.com:33133/shopping-list-test'
+        dbUri: 'mongodb://' + dbTestUser + ':' + dbTestPassword + '@ds035683.mongolab.com:35683/shopping-list-test'
     },
     production: {
         baseUrl: 'https://porcomprar.herokuapp.com',
