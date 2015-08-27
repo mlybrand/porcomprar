@@ -48,14 +48,19 @@ describe('API', function() {
                 .expect(201)
                 .expect('Content-Type', /json/)
                 .expect('Location', url +'/items/4')
-                .expect(function(res) {
-                    var item = res.body;
-                    if (!item) { throw new Error('no item in body'); }
-                    if (!item.id || item.id !== 4) { throw new Error('id is not valid'); }
-                    if (!item.name || item.name !== 'fizz') { throw new Error('name is not valid'); }
-                    if (typeof item.completed !== 'boolean' || item.completed) { throw new Error('completed is not valid'); }
-                })
-                .end(done);
+                .expect(checkItemFour)
+                .end(function() {
+                    api.get('/items/4')
+                        .expect(checkItemFour)
+                        .end(done);
+                });
+            function checkItemFour(res) {
+                var item = res.body;
+                if (!item) { throw new Error('no item in body'); }
+                if (!item.id || item.id !== 4) { throw new Error('id is not valid'); }
+                if (!item.name || item.name !== 'fizz') { throw new Error('name is not valid'); }
+                if (typeof item.completed !== 'boolean' || item.completed) { throw new Error('completed is not valid'); }
+            }
         });
     });
 
