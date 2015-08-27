@@ -48,6 +48,13 @@ describe('API', function() {
                 .expect(201)
                 .expect('Content-Type', /json/)
                 .expect('Location', url +'/items/4')
+                .expect(function(res) {
+                    var item = res.body;
+                    if (!item) { throw new Error('no item in body'); }
+                    if (!item.id || item.id !== 4) { throw new Error('id is not valid'); }
+                    if (!item.name || item.name !== 'fizz') { throw new Error('name is not valid'); }
+                    if (typeof item.completed !== 'boolean' || item.completed) { throw new Error('completed is not valid'); }
+                })
                 .end(done);
         });
     });
@@ -104,7 +111,7 @@ describe('API', function() {
                     var item = res.body;
                     if (item.id !== 1) { throw new Error('The id number is not 1'); }
                     if (item.name !== 'foo') { throw new Error('The name is not foo'); }
-                    if (!item.completed) { throw new Error('The completed attribute is not true'); }
+                    if (typeof item.completed !== 'boolean' || !item.completed) { throw new Error('The completed attribute is not true'); }
                 })
                 .end(done);
         });
