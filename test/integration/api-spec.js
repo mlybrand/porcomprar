@@ -3,7 +3,7 @@ var supertest = require('supertest'),
     env = process.env.NODE_ENV,
     port = 3000,
     db = require('../../lib/db'),
-    Item = require('mongoose').model('Item');
+    Item = require('mongoose').model('Item'),
     baseUrl = config[env].baseUrl,
     url = baseUrl + ( env === 'development' || env === 'test' ? ':' + port : '') + '/api',
     api = supertest(url);
@@ -35,12 +35,19 @@ describe('API', function() {
     });
 
     describe('Create', function() {
+
+        after(function(done) {
+            removeRecords(function() {
+                addRecords(done);
+            });
+        });
+
         it('should take an object, add it, and return a response with the new object and its location', function(done) {
             api.post('/items')
-                .send({ name: 'fizz', complated: false})
+                .send({ name: 'fizz', completed: false})
                 .expect(201)
                 .expect('Content-Type', /json/)
-                //.expect('Location', )
+                .expect('Location', url +'/items/4')
                 .end(done);
         });
     });
