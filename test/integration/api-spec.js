@@ -38,6 +38,7 @@ describe('API', function() {
             api.post('/items')
                 .send({ name: 'fizz', complated: false})
                 .expect(201)
+                .expect('Content-Type', /json/)
                 .end(done);
         });
     });
