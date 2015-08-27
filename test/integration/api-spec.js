@@ -125,7 +125,15 @@ describe('API', function() {
     describe('Update', function() {
         it('should update an existing record and return a representation of the updated item', function(done) {
             api.put('/items/1')
+                .send({id: 1, name: 'fop', completed: true })
                 .expect(200)
+                .expect('Content-Type', /json/)
+                .expect(function(res) {
+                    var item = res.body;
+                    if (!item.id || item.id !== 1) { throw new Error('id is invalid'); }
+                    if (!item.name || item.name !== 'fop') { throw new Error('name is invalid'); }
+                    if (!item.completed) { throw new Error('completed is invalid'); }
+                })
                 .end(done);
         });
         it('should toggle the completed field and return a representation of the udpated item');
