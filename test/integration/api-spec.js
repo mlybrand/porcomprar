@@ -123,11 +123,16 @@ describe('API', function() {
     });
 
     describe('Update', function() {
-
+        it('should update an existing record and return a representation of the updated item', function(done) {
+            api.put('/items/1')
+                .expect(200)
+                .end(done);
+        });
+        it('should toggle the completed field and return a representation of the udpated item');
     });
 
     describe('Delete', function() {
-
+        it('should remove the item and return a response indicating no content');
     });
 });
 
