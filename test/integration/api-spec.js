@@ -5,7 +5,8 @@ var supertest = require('supertest'),
     db = require('../../lib/db'),
     Item = require('mongoose').model('Item');
     baseUrl = config[env].baseUrl,
-    api = supertest(baseUrl + ( env === 'development' || env === 'test' ? ':' + port : '') + '/api');
+    url = baseUrl + ( env === 'development' || env === 'test' ? ':' + port : '') + '/api',
+    api = supertest(url);
 
 describe('API', function() {
     var app, server;
@@ -39,6 +40,7 @@ describe('API', function() {
                 .send({ name: 'fizz', complated: false})
                 .expect(201)
                 .expect('Content-Type', /json/)
+                //.expect('Location', )
                 .end(done);
         });
     });
