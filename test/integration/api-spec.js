@@ -161,7 +161,11 @@ describe('API', function() {
                 function(done) {
             api.delete('/items/1')
                 .expect(204)
-                .end(done);
+                .end(function() {
+                    api.get('/items/1')
+                        .expect(404)
+                        .end(done);
+                });
         });
         it('should return 404 if there is no matching item');
     });
