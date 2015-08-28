@@ -138,7 +138,9 @@ describe('API', function() {
         });
         it('should toggle the completed field and return a representation of the udpated item', function(done) {
             api.put('/items/1/completed')
+                .send({id: 2, name: 'bar', completed: false })
                 .expect(200)
+                .expect('Content-Type', /json/)
                 .end(done);
         });
     });
