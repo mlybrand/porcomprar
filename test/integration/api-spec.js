@@ -120,6 +120,11 @@ describe('API', function() {
                 })
                 .end(done);
         });
+        it('should return 404 if there is no matching item', function(done) {
+            api.get('/items/99')
+                .expect(404)
+                .end(done);
+        });
     });
 
     describe('Update', function() {
@@ -136,6 +141,7 @@ describe('API', function() {
                 })
                 .end(done);
         });
+        it('should return 404 on update if there is no matching item');
         it('should toggle the completed field and return a representation of the udpated item', function(done) {
             api.put('/items/2/completed')
                 .send({id: 2, name: 'bar', completed: false })
@@ -147,10 +153,17 @@ describe('API', function() {
                 })
                 .end(done);
         });
+        it('should return 404 on complete toggle if there is no matching item');
     });
 
     describe('Delete', function() {
-        it('should remove the item and return a response indicating no content');
+        it('should remove the item and return a response indicating no content and the item should be removed',
+                function(done) {
+            api.delete('/items/1')
+                .expect(204)
+                .end(done);
+        });
+        it('should return 404 if there is no matching item');
     });
 });
 
