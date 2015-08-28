@@ -137,10 +137,14 @@ describe('API', function() {
                 .end(done);
         });
         it('should toggle the completed field and return a representation of the udpated item', function(done) {
-            api.put('/items/1/completed')
+            api.put('/items/2/completed')
                 .send({id: 2, name: 'bar', completed: false })
                 .expect(200)
                 .expect('Content-Type', /json/)
+                .expect(function(res) {
+                    var item = res.body;
+                    if (!item.completed) { throw new Error('completed is invalid'); }
+                })
                 .end(done);
         });
     });
