@@ -136,7 +136,11 @@ describe('API', function() {
                 })
                 .end(done);
         });
-        it('should toggle the completed field and return a representation of the udpated item');
+        it('should toggle the completed field and return a representation of the udpated item', function(done) {
+            api.put('/items/1/completed')
+                .expect(200)
+                .end(done);
+        });
     });
 
     describe('Delete', function() {
