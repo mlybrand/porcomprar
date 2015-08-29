@@ -8,32 +8,42 @@ var expect = require('chai').expect,
 describe('Shopping List Site', function() {
     var app, server;
 
-    before(function(done) {
-        if (env === 'development' || env === 'test') {
-            app = require('../../lib/app');
-            baseUrl = baseUrl + ':' + port;
-            server = app.listen(port, function() {
-                done();
-            });
-        } else {
-            done();
-        }
-    });
+    describe('Main Page', function() {
 
-    after(function() {
-        if (env === 'development' || env === 'test') {
-            server.close();
-        }
-    });
-
-    it('should exist', function(done) {
-        var driver = new sw.Builder().withCapabilities(sw.Capabilities.phantomjs()).build();
-        driver.get(baseUrl).then(function() {
-            driver.getTitle().then(function(title) {
-                expect(title).to.equal('Shopping List');
+        before(function(done) {
+            if (env === 'development' || env === 'test') {
+                app = require('../../lib/app');
+                baseUrl = baseUrl + ':' + port;
+                server = app.listen(port, function() {
+                    done();
+                });
+            } else {
                 done();
+            }
+        });
+
+        after(function() {
+            if (env === 'development' || env === 'test') {
+                server.close();
+            }
+        });
+
+        it('should exist', function(done) {
+            var driver = new sw.Builder().withCapabilities(sw.Capabilities.phantomjs()).build();
+            driver.get(baseUrl).then(function() {
+                driver.getTitle().then(function(title) {
+                    expect(title).to.equal('Shopping List');
+                    done();
+                });
             });
         });
     });
 
+    describe('Shopping Context', function() {
+
+    });
+
+    describe('Maintenance Context', function() {
+
+    });
 });
