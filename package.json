@@ -31,6 +31,7 @@
     "grunt-contrib-copy": "^0.8.1",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-env": "^0.4.4",
+    "grunt-execute": "^0.2.2",
     "grunt-mocha-test": "^0.12.7",
     "mocha": "^2.2.5",
     "selenium-webdriver": "^2.46.1",

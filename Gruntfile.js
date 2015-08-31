@@ -68,6 +68,11 @@ module.exports = function(grunt) {
             }
         },
         clean: ['public/vendor/**'],
+        execute: {
+           target: {
+               src: ['server.js']
+           }
+        },
         mochaTest: {
             test: {
                 src: ['test/**/*.js']
@@ -80,7 +85,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-execute');
 
     grunt.registerTask('test', ['copy', 'env:test', 'jshint', 'mochaTest']);
     grunt.registerTask('smoketest', ['env:smoke', 'mochaTest']);
+    grunt.registerTask('start:dev', ['env:dev', 'execute']);
 };
