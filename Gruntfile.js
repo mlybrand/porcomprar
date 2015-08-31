@@ -21,6 +21,52 @@ module.exports = function(grunt) {
             },
             all: ['*.js', 'lib/**/*.js', 'test/**/*.js', 'config/**/*.js']
         },
+        copy: {
+            main: {
+                files: [
+                    {
+                        cwd: 'bower_components/',
+                        src: ['*/dist/**/*.js', '!*/dist/**/npm.js'],
+                        dest: 'public/js',
+                        filter: 'isFile',
+                        expand: true,
+                        flatten: true
+                    },
+                    {
+                        cwd: 'bower_components/',
+                        src: ['*/dist/**/*.map', '!*/dist/**/*.css.map'],
+                        dest: 'public/js',
+                        filter: 'isFile',
+                        expand: true,
+                        flatten: true
+                    },
+                    {
+                        cwd: 'bower_components/',
+                        src: '*/dist/**/*.css',
+                        dest: 'public/css',
+                        filter: 'isFile',
+                        expand: true,
+                        flatten: true
+                    },
+                    {
+                        cwd: 'bower_components/',
+                        src: '*/dist/**/*.css.map',
+                        dest: 'public/css',
+                        filter: 'isFile',
+                        expand: true,
+                        flatten: true
+                    },
+                    {
+                        cwd: 'bower_components/',
+                        src: '*/dist/**/fonts/**',
+                        dest: 'public/fonts',
+                        filter: 'isFile',
+                        expand: true,
+                        flatten: true
+                    }
+                ]
+            }
+        },
         mochaTest: {
             test: {
                 src: ['test/**/*.js']
@@ -30,9 +76,9 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-mocha-test');
 
     grunt.registerTask('test', ['env:test', 'jshint', 'mochaTest']);
     grunt.registerTask('smoketest', ['env:smoke', 'mochaTest']);
-
 };
