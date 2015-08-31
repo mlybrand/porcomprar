@@ -81,6 +81,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-mocha-test');
 
-    grunt.registerTask('test', ['env:test', 'jshint', 'mochaTest']);
+    grunt.registerTask('test', ['copy', 'env:test', 'jshint', 'mochaTest']);
     grunt.registerTask('smoketest', ['env:smoke', 'mochaTest']);
 };
