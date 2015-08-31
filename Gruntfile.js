@@ -99,5 +99,5 @@ module.exports = function(grunt) {
     grunt.registerTask('smoketest', ['env:smoke', 'mochaTest']);
     grunt.registerTask('start:dev', ['env:dev', 'execute']);
     grunt.registerTask('start:prod', ['env:prod', 'bower:install', 'copy', 'execute' ]);
-    grunt.registerTask('heroku', ['bower:install', 'copy', 'execute' ]);
+    grunt.registerTask('heroku', ['env:prod', 'bower:install', 'copy', 'execute' ]);
 };
