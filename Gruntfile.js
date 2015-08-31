@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                     {
                         cwd: 'bower_components/',
                         src: ['*/dist/**/*.js', '!*/dist/**/npm.js'],
-                        dest: 'public/js',
+                        dest: 'public/vendor/js',
                         filter: 'isFile',
                         expand: true,
                         flatten: true
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                     {
                         cwd: 'bower_components/',
                         src: ['*/dist/**/*.map', '!*/dist/**/*.css.map'],
-                        dest: 'public/js',
+                        dest: 'public/vendor/js',
                         filter: 'isFile',
                         expand: true,
                         flatten: true
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                     {
                         cwd: 'bower_components/',
                         src: '*/dist/**/*.css',
-                        dest: 'public/css',
+                        dest: 'public/vendor/css',
                         filter: 'isFile',
                         expand: true,
                         flatten: true
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
                     {
                         cwd: 'bower_components/',
                         src: '*/dist/**/*.css.map',
-                        dest: 'public/css',
+                        dest: 'public/vendor/css',
                         filter: 'isFile',
                         expand: true,
                         flatten: true
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                     {
                         cwd: 'bower_components/',
                         src: '*/dist/**/fonts/**',
-                        dest: 'public/fonts',
+                        dest: 'public/vendor/fonts',
                         filter: 'isFile',
                         expand: true,
                         flatten: true
@@ -67,6 +67,7 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        clean: ['public/vendor/**'],
         mochaTest: {
             test: {
                 src: ['test/**/*.js']
@@ -77,6 +78,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-mocha-test');
 
     grunt.registerTask('test', ['env:test', 'jshint', 'mochaTest']);
