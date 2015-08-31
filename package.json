@@ -4,7 +4,7 @@
   "description": "Website to support a shopping list application.",
   "main": "app.js",
   "scripts": {
-    "start": "node server",
+    "start": "grunt start:prod",
     "test": "grunt test"
   },
   "repository": {
@@ -27,6 +27,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "grunt": "^0.4.5",
+    "grunt-bower-task": "^0.4.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.8.1",
     "grunt-contrib-jshint": "^0.11.2",

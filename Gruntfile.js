@@ -15,6 +15,13 @@ module.exports = function(grunt) {
                 NODE_ENV: 'production'
             }
         },
+        bower: {
+            install: {
+                options: {
+                    copy: false
+                }
+            }
+        },
         jshint: {
             options: {
                expr: true
@@ -86,8 +93,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-execute');
+    grunt.loadNpmTasks('grunt-bower-task');
 
     grunt.registerTask('test', ['copy', 'env:test', 'jshint', 'mochaTest']);
     grunt.registerTask('smoketest', ['env:smoke', 'mochaTest']);
     grunt.registerTask('start:dev', ['env:dev', 'execute']);
+    grunt.registerTask('start:prod', ['env:prod', 'bower:install', 'copy', 'execute' ])
 };
