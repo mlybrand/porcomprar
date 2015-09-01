@@ -4,7 +4,7 @@
   "description": "Website to support a shopping list application.",
   "main": "app.js",
   "scripts": {
-    "start": "grunt start:prod",
+    "start": "node server",
     "test": "grunt test"
   },
   "repository": {
