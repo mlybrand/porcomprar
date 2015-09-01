@@ -44,7 +44,7 @@ describe('Shopping List Site', function() {
             driver.get(baseUrl).then(function() {
                 driver.findElement(By.id('shop')).then(function(el) {
                     el.getText().then(function(text) {
-                        expect(text).to.equal('Shop');
+                        expect(text).to.equal('shop');
                         el.getAttribute('href').then(function(href) {
                             expect(href).to.equal(baseUrl + '/shop');
                             done();
@@ -59,7 +59,7 @@ describe('Shopping List Site', function() {
             driver.get(baseUrl).then(function() {
                 driver.findElement(By.id('edit')).then(function(el) {
                     el.getText().then(function(text) {
-                        expect(text).to.equal('Edit');
+                        expect(text).to.equal('edit');
                         el.getAttribute('href').then(function(href) {
                             expect(href).to.equal(baseUrl + '/edit');
                             done();
