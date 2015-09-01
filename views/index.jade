@@ -14,7 +14,20 @@ html(lang='en')
         title Shopping List
 
     body
-        h1 Shopping List
-        a#shop(href='shop') Shop
-        a#edit(href='edit') Edit
+        div.container
+            div.row
+                div.col-md-6
+                    a#shop.btn.btn-lg.btn-success(href='shop')
+                        div.btn-main
+                            div.btn-main.btn-icon
+                                span.glyphicon.glyphicon-shopping-cart
+                            div.btn-main.btn-caption
+                                | shop
+                div.col-md-6
+                    a#edit.btn.btn-lg.btn-success(href='edit')
+                        div.btn-main
+                            div.btn-main.btn-icon
+                                span.glyphicon.glyphicon-list-alt
+                            div.btn-main.btn-caption
+                                | edit
 

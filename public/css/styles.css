@@ -1,0 +1,16 @@
+.btn-main {
+    padding-top: 2px;
+    position: relative;
+    width: 390px;
+    height: 390px;
+}
+
+.btn-main .btn-icon {
+    font-size: 15em;
+    margin-bottom: 0;
+}
+
+.btn-main .btn-caption {
+    font-size: 5em;
+    top: -1.3em;
+}
