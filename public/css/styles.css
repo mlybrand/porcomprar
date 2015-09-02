@@ -1,18 +1,52 @@
-.btn-main {
-    padding-top: 0.14em;
-    position: relative;
-    width: 25em;
-    height: 25em;
+@media screen and (min-width: 768px) {
+    .btn-main {
+        padding-top: 0.14em;
+        position: relative;
+        width: 25em;
+        height: 25em;
+    }
+
+    .btn-main .btn-icon {
+        position: relative;
+        font-size: 18em;
+        margin-bottom: 0;
+    }
+
+    .btn-main .btn-caption {
+        position: relative;
+        font-size: 6em;
+        top: -1.11em;
+    }
 }
 
-.btn-main .btn-icon {
-    position: relative;
-    font-size: 18em;
-    margin-bottom: 0;
-}
+@media screen and (max-width: 767px) {
+    .btn-main-wrapper {
+        width: 100%;
+        margin-bottom: 1em;
+    }
 
-.btn-main .btn-caption {
-    position: relative;
-    font-size: 6em;
-    top: -1.11em;
+    .btn-main {
+        position: relative;
+        width: 100%;
+    }
+
+    .btn-main .btn-icon {
+        position: relative;
+        top: 0.125em;
+        display: inline;
+        width: 20%;
+        float: left;
+        font-size: 2em;
+    }
+
+    .btn-main .btn-caption {
+        position: relative;
+        display: inline;
+        width: 80%;
+        float: left;
+        text-align: left;
+        margin-left: 1em;
+        margin-right: -1em;
+        font-size: 2em;
+    }
 }
