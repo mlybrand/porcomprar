@@ -71,10 +71,17 @@ describe('Shopping List Site', function() {
     });
 
     describe('Shopping Context', function() {
-
+        it('should have a page for the list');
+        it('should contain a list of 3 items');
+        it('should allow uncompleted items to be completed');
+        it('should allow completed items to be uncompleted');
     });
 
     describe('Maintenance Context', function() {
-
+        it('should have a page to edit the list');
+        it('should contain a list of 3 items');
+        it('should allow each item to be edited');
+        it('should allow each item to be deleted');
+        it('should allow for new items to be added');
     });
 });
