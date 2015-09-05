@@ -9,25 +9,25 @@ var expect = require('chai').expect,
 describe('Shopping List Site', function() {
     var app, server;
 
-    describe('Main Page', function() {
-
-        before(function(done) {
-            if (env === 'development' || env === 'test') {
-                app = require('../../lib/app');
-                baseUrl = baseUrl + ':' + port;
-                server = app.listen(port, function() {
-                    done();
-                });
-            } else {
+    before(function(done) {
+        if (env === 'development' || env === 'test') {
+            app = require('../../lib/app');
+            baseUrl = baseUrl + ':' + port;
+            server = app.listen(port, function() {
                 done();
-            }
-        });
+            });
+        } else {
+            done();
+        }
+    });
 
-        after(function() {
-            if (env === 'development' || env === 'test') {
-                server.close();
-            }
-        });
+    after(function() {
+        if (env === 'development' || env === 'test') {
+            server.close();
+        }
+    });
+
+    describe('Main Page', function() {
 
         it('should exist', function(done) {
             var driver = new sw.Builder().withCapabilities(sw.Capabilities.phantomjs()).build();
@@ -71,7 +71,15 @@ describe('Shopping List Site', function() {
     });
 
     describe('Shopping Context', function() {
-        it('should have a page for the list');
+        it('should have a page for the list', function(done) {
+            var driver = new sw.Builder().withCapabilities(sw.Capabilities.phantomjs()).build();
+            driver.get(baseUrl + '/shop').then(function() {
+                driver.getTitle().then(function(title) {
+                    expect(title).to.equal('Shopping List: Shop');
+                    done();
+                });
+            });
+        });
         it('should contain a list of 3 items');
         it('should allow uncompleted items to be completed');
         it('should allow completed items to be uncompleted');

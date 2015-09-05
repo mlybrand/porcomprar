@@ -34,6 +34,7 @@
     "grunt-env": "^0.4.4",
     "grunt-execute": "^0.2.2",
     "grunt-mocha-test": "^0.12.7",
+    "grunt-nodemon": "^0.4.0",
     "mocha": "^2.2.5",
     "selenium-webdriver": "^2.46.1",
     "supertest": "^1.0.1"
